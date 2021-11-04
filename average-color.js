@@ -49,9 +49,12 @@ function getAverageColor(img) {
   var b = [];
 
   for (var i = 0, l = data.length; i < l; i += 4) {
-    r.push(data[i]);
-    g.push(data[i+1]);
-    b.push(data[i+2]);
+    if ( data[i+3] < 127 ) {
+				continue;
+			}
+	r.push(data[i]);
+    	g.push(data[i+1]);
+    	b.push(data[i+2]);
   }
 	
 	

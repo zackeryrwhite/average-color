@@ -53,29 +53,29 @@ function getAverageColor(img) {
     g += data[i+1];
     b += data[i+2];
   }
-
-function mode(arr) {
-    var numMapping = {};
-    var greatestFreq = 0;
-    var mode;
-    arr.forEach(function findMode(number) {
-        numMapping[number] = (numMapping[number] || 0) + 1;
-
-        if (greatestFreq < numMapping[number]) {
-            greatestFreq = numMapping[number];
-            mode = number;
-        }
-    });
-    return +mode;
-}
 	
-  r = mode(r);
-  g = mode(g);
-  b = mode(b);
+  r = AnyMode(r);
+  g = AnyMode(g);
+  b = AnyMode(b);
 
   return { r: r, g: g, b: b };
 }
 
+function AnyMode(arr) { 
+	max = 0;
+	mode = [];
+	str = arr.sort();
+	str = "~" + str.join('~~') + "~"
+	str.replace( /(~-*\d+~)\1*/g, function(a, b
+	) {
+	    var m = a.length / b.length;
+	    if (max <= m ) {
+		if (max < m) {mode = [];max = m;}
+		mode.push( b.replace(/~/g,""));
+	    } 
+	});
+	return mode;
+	}
 
 function handleImages(files) {
   document.getElementById('images').innerHTML = '';

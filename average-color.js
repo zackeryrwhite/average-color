@@ -54,28 +54,40 @@ function getAverageColor(img) {
     b += data[i+2];
   }
 	
-  r = AnyMode(r);
-  g = AnyMode(g);
-  b = AnyMode(b);
+console.r;
+console.g;
+console.b;
+	
+  r = mode(r);
+  g = mode(g);
+  b = mode(b);
 
   return { r: r, g: g, b: b };
 }
 
-function AnyMode(arr) { 
-	max = 0;
-	mode = [];
-	str = arr.sort();
-	str = "~" + str.join('~~') + "~"
-	str.replace( /(~-*\d+~)\1*/g, function(a, b
-	) {
-	    var m = a.length / b.length;
-	    if (max <= m ) {
-		if (max < m) {mode = [];max = m;}
-		mode.push( b.replace(/~/g,""));
-	    } 
-	});
-	return mode;
-	}
+function mode(numbers) {
+    // as result can be bimodal or multi-modal,
+    // the returned result is provided as an array
+    // mode of [3, 5, 4, 4, 1, 1, 2, 3] = [1, 3, 4]
+    var modes = [], count = [], i, number, maxIndex = 0;
+ 
+    for (i = 0; i < numbers.length; i += 1) {
+        number = numbers[i];
+        count[number] = (count[number] || 0) + 1;
+        if (count[number] > maxIndex) {
+            maxIndex = count[number];
+        }
+    }
+ 
+    for (i in count)
+        if (count.hasOwnProperty(i)) {
+            if (count[i] === maxIndex) {
+                modes.push(Number(i));
+            }
+        }
+ 
+    return modes;
+}
 
 function handleImages(files) {
   document.getElementById('images').innerHTML = '';

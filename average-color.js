@@ -44,19 +44,16 @@ function getAverageColor(img) {
 
   var imageData = ctx.getImageData(0, 0, width, height);
   var data = imageData.data;
-  var r = 0;
-  var g = 0;
-  var b = 0;
+  var r = [];
+  var g = [];
+  var b = [];
 
   for (var i = 0, l = data.length; i < l; i += 4) {
-    r += data[i];
-    g += data[i+1];
-    b += data[i+2];
+    r.push(data[i]);
+    g.push(data[i+1]);
+    b.push(data[i+2]);
   }
 	
-console.r;
-console.g;
-console.b;
 	
   r = mode(r);
   g = mode(g);

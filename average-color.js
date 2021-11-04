@@ -28,7 +28,7 @@ function addImage(file) {
 
     element.querySelector('.rgb').textContent = rgbStr;
     element.querySelector('.hex').textContent = hexStr;
-    element.querySelector('.hsl').textContent = hslStr;
+//     element.querySelector('.hsl').textContent = hslStr;
   };
 
   document.getElementById('images').appendChild(element);
